@@ -205,11 +205,11 @@ Resources:
                 - "{{SCInstanceIds.InstanceId}}"
               Parameters:
                 commands:
-                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/quickstart-microsoft-utilities/scripts/" -Folder "{{ScriptsLocalPath}}\utilities"'
-                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/quickstart-microsoft-utilities/modules/" -Folder "{{ScriptsLocalPath}}\utilities"'
+                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/cfn-ps-microsoft-utilities/scripts/" -Folder "{{ScriptsLocalPath}}\utilities"'
+                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/cfn-ps-microsoft-utilities/modules/" -Folder "{{ScriptsLocalPath}}\utilities"'
                   - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}scripts/install/" -Folder "{{ScriptsLocalPath}}"'
-                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/quickstart-aws-sitecore-base/scripts/install/" -Folder "{{ScriptsLocalPath}}"'
-                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/quickstart-aws-sitecore-base/scripts/functions/" -Folder "{{ScriptsLocalPath}}"'
+                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/cfn-ps-aws-sitecore-base/scripts/install/" -Folder "{{ScriptsLocalPath}}"'
+                  - 'Read-S3Object -BucketName {{QSS3BucketName}} -Region {{QSS3BucketRegion}} -KeyPrefix "/{{QSS3KeyPrefix}}submodules/cfn-ps-aws-sitecore-base/scripts/functions/" -Folder "{{ScriptsLocalPath}}"'
                   - 'Read-S3Object -BucketName "aws-codedeploy-{{SitecoreRegion}}" -Region {{SitecoreRegion}} -Key latest/codedeploy-agent.msi -File "{{ScriptsLocalPath}}\codedeploy-agent.msi"'
                   - '& "{{ScriptsLocalPath}}\utilities\Unzip-Archive.ps1" -Source "{{ScriptsLocalPath}}\utilities\AWSQuickStart.zip" -Destination "C:\Windows\system32\WindowsPowerShell\v1.0\Modules\"'
                   - '& "{{ScriptsLocalPath}}\sc-new-certs.ps1" -SCQSPrefix {{rootStackName}}'

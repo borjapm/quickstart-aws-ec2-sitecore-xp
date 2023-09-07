@@ -711,7 +711,7 @@ Parameters:
       The Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a 
       hyphen (-).
-    Default: aws-quickstart
+    Default: aws-ia-us-east-1
     Description:
       Name of the S3 bucket for your copy of the Quick Start assets. 
       Keep the default name unless you are customizing the template. 
@@ -734,7 +734,7 @@ Parameters:
       The Quick Start S3 key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slashes (/). The prefix should
       end with a forward slash (/).
-    Default: quickstart-sitecore-xp/
+    Default: cfn-ps-sitecore-xp/
     Description:
       S3 key prefix that is used to simulate a folder for your copy of the 
       Quick Start assets. Keep the default prefix unless you are customizing 
@@ -755,7 +755,7 @@ Rules:
         Assert: !Not [!Equals [!Ref CMMinSize, !Ref CMMaxSize]]
 
 Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-ia-us-east-1']
   IncludeRDGW: !Not
     - !Equals
       - !Ref NumberOfRDGWHosts
@@ -766,7 +766,7 @@ Resources:
     Properties:
       TemplateURL: 
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-aws-vpc/templates/aws-vpc.template.yaml'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -787,7 +787,7 @@ Resources:
     Properties: 
       TemplateURL: 
         !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/templates/rdgw-standalone.template'
+          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-microsoft-rdgateway/templates/rdgw-standalone.template'
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -800,7 +800,7 @@ Resources:
         PublicSubnet2ID: !GetAtt VPCStack.Outputs.PublicSubnet2ID
         QSS3BucketName: !Ref QSS3BucketName
         QSS3BucketRegion: !Ref QSS3BucketRegion
-        QSS3KeyPrefix: !Sub ${QSS3KeyPrefix}submodules/quickstart-microsoft-rdgateway/
+        QSS3KeyPrefix: !Sub ${QSS3KeyPrefix}submodules/cfn-ps-microsoft-rdgateway/
         RDGWInstanceType: !Ref RDGWInstanceType
         RDGWCIDR: !Ref RDGWCIDR
         VPCID: !GetAtt VPCStack.Outputs.VPCID
