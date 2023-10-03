@@ -1,28 +1,43 @@
 :xrefstyle: short
 
-Deploying this Partner Solution with default parameters builds the following {partner-product-short-name} environment in the
+Deploying this Partner Solution for a new virtual private cloud (VPC) with
+default parameters builds the following {partner-product-short-name} environment in the
 AWS Cloud.
 
-// Replace this example diagram with your own. Follow our wiki guidelines: https://w.amazon.com/bin/view/AWS_Quick_Starts/Process_for_PSAs/#HPrepareyourarchitecturediagram. Upload your source PowerPoint file to the GitHub {deployment name}/docs/images/ directory in its repository.
+// Replace this example diagram with your own. Follow our wiki guidelines: https://w.amazon.com/bin/view/AWS_Quick_Starts/Process_for_PSAs/#HPrepareyourarchitecturediagram. Upload your source PowerPoint file to the GitHub {deployment name}/docs/images/ directory in this repo. 
 
 [#architecture1]
-.Partner Solution architecture for {partner-product-short-name} on AWS
-image::../docs/deployment_guide/images/architecture_diagram.png[Architecture]
+.Partner Solution architecture for {partner-product-name} on AWS
+[link=deployment_guide/images/architecture-diagram.png]
+image::../docs/deployment_guide/images/architecture-diagram.png[Architecture,width=1227,height=851]
 
-As shown in <<architecture1>>, this Partner Solution sets up the following:
+[#architecture2]
+.Partner Solution architecture of resources for {partner-product-name} on AWS
+[link=deployment_guide/images/architecture-diagram-2.png]
+image::../docs/deployment_guide/images/architecture-diagram-2.png[Architecture,width=967,height=1201]
+
+As shown in figures 1 and 2, the Partner Solution sets up the following:
+
+The Partner Solution sets up the following:
 
 * A highly available architecture that spans two Availability Zones.*
-* A virtual private cloud (VPC) configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*
+* A virtual private cloud (VPC) configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
 * In the public subnets:
-** Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*
-** A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in public and private subnets.*
+** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*
+** Microsoft Remote Desktop Gateway (RD Gateway) instances in an Auto Scaling group. This provides inbound remote desktop access to Amazon Elastic Compute Cloud (Amazon EC2) instances in the public and private subnets.*
+* An internal Application Load Balancer to route traffic to Sitecore reporting and processing instances.
+* An external Application Load Balancer for routing traffic to Sitecore content and identity role instances.
+* Network Load Balancers for Transport Layer Security (TLS) pass-through to the remaining Sitecore instances.
 * In the private subnets:
-** <item>.
-** <item>.
-// Add bullet points for any additional components that are included in the deployment. Ensure that the additional components are shown in the architecture diagram. End each bullet with a period.
-* <describe any additional components>.
+** Sitecore roles deployed on Amazon EC2 instances. Each role is deployed to one EC2 instance, and each instance is deployed to an Auto Scaling group.
+** Amazon RDS SQL Server instances.
+** Amazon ElastiCache for Redis for cache management.
+* An EC2 Amazon Machine Image (AMI) for the initial deployment of Sitecore roles and subsequent Auto Scaling events.
+* AWS Systems Manager to store parameter data and the AMI automation build document.
+* An Amazon Simple Storage Service (Amazon S3) bucket for storing static data.
+* Amazon CloudWatch for monitoring deployed services.
+* AWS Secrets Manager and AWS Certificate Manager (ACM) for access control.
+* A Lambda function to convert and import the Sitecore client certificate into ACM.
+* An Amazon Route 53 private hosted zone for internal Domain Name System (DNS) lookups within the VPC.
 
-[.small]#* The template that deploys this Partner Solution into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.#
+[.small]#* The template that deploys the Partner Solution into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.#

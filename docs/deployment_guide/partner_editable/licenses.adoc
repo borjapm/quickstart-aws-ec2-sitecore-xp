@@ -1,3 +1,11 @@
 // Include details about any licenses and how to sign up. Provide links as appropriate.
 
-There is no cost to use this Partner Solution, but you will be billed for any AWS services or resources that this Partner Solution deploys. For more information, refer to the https://fwd.aws/rA69w?[AWS Partner Solution General Information Guide^].
+This Partner Solution requires a Sitecore XP license. To use the Partner Solution in your
+production environment, https://www.sitecore.com/knowledge-center/getting-started/developer-trial[sign up for a developer trial license]. For a full license, contact a
+Sitecore sales representative or Sitecore partner. Before you launch the Partner Solution, place
+the license key in the deployment’s associated S3 bucket, and specify its location. For more
+information, see the <<_pre_deployment_steps,Pre deployment steps>> section.
+
+If you don’t have a license, the Partner Solution deployment will not complete successfully.
+
+There is no cost to use this Partner Solution, however you will be billed for the resources deployed. For more information see the http://general-content-file[AWS Partner Solution General Information Guide].
