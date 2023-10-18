@@ -636,7 +636,7 @@ Parameters:
       The Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a 
       hyphen (-).
-    Default: aws-ia-us-east-1
+    Default: aws-ia
     Description:
       Name of the S3 bucket for your copy of the Quick Start assets. 
       Keep the default name unless you are customizing the template. 
@@ -679,7 +679,7 @@ Rules:
       - AssertDescription: Maximum number of Content Management instances must be larger than the minimum number specified.
         Assert: !Not [!Equals [!Ref CMMinSize, !Ref CMMaxSize]]
 Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-ia-us-east-1']
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-ia']
   CreateLambdaZipsBucket: !Equals [!Ref 'LambdaZipsBucketName', '']
   InternalDNSName: !Equals [!Ref 'IntDNS', '']
   CreateDevSolr: !Equals [!Ref 'SOLRUrl', '']
